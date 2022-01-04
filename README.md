@@ -42,3 +42,5 @@ To check listening: sudo netstat -lntp | grep dockerd
 curl http://localhost:2375/images/json must be with response
 
 sudo iptables -I INPUT -p tcp -s 0.0.0.0/0 --dport 2375 -j ACCEPT - open port 2375
+
+.\pscp.exe -r ubuntu@158.101.202.201:/home c:\temp\
