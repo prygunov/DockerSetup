@@ -2,6 +2,7 @@
 Install docker:
 
 sudo apt-get update
+
 sudo apt-get install \
       ca-certificates \
       curl \
@@ -9,23 +10,30 @@ sudo apt-get install \
       lsb-release
     
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+
 echo \
   "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
   $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 
 sudo apt-get update
+
 sudo apt-get install docker-ce docker-ce-cli containerd.io
+
 sudo docker run hello-world
 
 
 Postinstall steps
 
- sudo groupadd docker
- sudo usermod -aG docker $USER
- newgrp docker 
- docker run hello-world
+sudo groupadd docker
+ 
+sudo usermod -aG docker $USER
+ 
+newgrp docker 
+ 
+docker run hello-world
  
 sudo systemctl enable docker.service
+
 sudo systemctl enable containerd.service
  
 Enable remote api:
@@ -37,6 +45,7 @@ ExecStart=
 ExecStart=/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:2375
 
 sudo systemctl daemon-reload
+
 sudo systemctl restart docker.service
 
 sudo netstat -lntp | grep dockerd
