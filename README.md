@@ -48,6 +48,7 @@ sudo systemctl daemon-reload
 
 sudo systemctl restart docker.service
 
+apt install net-tools 
 sudo netstat -lntp | grep dockerd
 
 curl http://localhost:2375/images/json must be with response
